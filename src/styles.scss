@@ -1,0 +1,234 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url("../src/assets/fonts/Poppins-Regular.ttf");
+}
+
+body {
+  font-family: 'Poppins';
+}
+
+label {
+  color: #b1dbc2;
+  font-size: 12px;
+}
+
+.form-control {
+  background-color: transparent;
+  border-radius: 20px;
+  font-size: 10px;
+  color: #b1dbc2;
+  border: 1px solid #b1dbc2;
+
+  &:focus {
+    background-color: transparent;
+    color: #b1dbc2;
+    box-shadow: none;
+    border: 1px solid #b1dbc2;
+  }
+
+  &::placeholder {
+    color: #b1dbc2;
+  }
+}
+
+.btn {
+  background-color: #b1dbc2;
+  border-radius: 34px;
+  color: #0b1e20;
+  border-color: #b1dbc2;
+  font-weight: 600;
+  padding: 4px 20px;
+  font-size: 12px;
+  margin-left: 14px;
+
+  &:hover {
+    color: #0b1e20;
+    box-shadow: none;
+  }
+
+  img {
+    height: 12px;
+    margin-right: 8px;
+  }
+}
+
+.error-msg {
+  color: red;
+  font-size: 10px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 2.5px;
+  height: 2.5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #608686;
+  border-radius: 10px;
+}
+
+.rotate-180 {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+// Login
+.login {
+  height: 100vh;
+
+  .card {
+    background-color: #00151c;
+    padding: 60px 40px;
+    border-radius: 20px;
+
+    h4 {
+      color: #b1dbc2;
+      font-size: 30px;
+      font-weight: 600px;
+    }
+  }
+}
+
+// Login End
+
+// Header
+.header {
+  background-color: #001A22;
+  color: #b1dbc2;
+  height: 9vh;
+}
+// Header End
+
+// Challenges
+.challenges {
+  background-color: #001116;
+  height: 91vh;
+
+  .search {
+
+    .form-control {
+      font-size: 16px;
+      border-radius: 50px;
+      padding: 8px 30px 8px 50px;
+      border: 1px solid #001A22;
+      color: #b1dbc2;
+      background-color: #001A22;
+    }
+
+    img {
+      top: 50%;
+      transform: translateY(-50%);
+      left: 20px;
+    }
+  }
+
+  .card {
+    height: 79vh;
+    border-radius: 20px;
+    padding: 14px;
+    margin-top: 20px;
+    background-color: #00151C;
+  }
+
+  .card-body {
+    border-radius: 20px;
+    padding: 10px 0;
+    background-color: #001A22;
+  }
+
+  table {
+
+    td,
+    th {
+      padding-top: 9px;
+      padding-bottom: 7px;
+    }
+
+    th {
+      font-size: 14px;
+      color: #b1dbc2;
+      background-color: #001116;
+      border: none;
+      font-weight: bold;
+
+      img {
+        margin-left: 10px;
+      }
+    }
+
+    td {
+      font-size: 12px;
+      border-right: none;
+      border-left: none;
+      border-top: none !important;
+      color: #b1dbc2;
+      border-top: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+
+      img {
+        height: 16px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+
+    tr:nth-child(even) td {
+      background-color: #00151C;
+    }
+
+
+    .hide-td,
+    tbody tr:hover .show-td {
+      display: none;
+    }
+
+    .show-td,
+    tbody tr:hover .hide-td {
+      display: table-cell;
+    }
+
+    tbody {
+      max-height: 66vh;
+      overflow-y: auto;
+      display: block;
+      margin-bottom: 0;
+    }
+
+    tr {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+}
+// Challenges End
+
+// Modal
+#challenges {
+  h5 {
+    color: #b1dbc2;
+  }
+  .modal-content {
+    background-color: #001A22;
+  }
+
+  .modal-header {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #b1dbc2;
+
+    img {
+      transform: rotate(45deg);
+      height: 14px;
+    }
+  }
+
+  .btn {
+    float: right;
+  }
+}
+// Modal End
