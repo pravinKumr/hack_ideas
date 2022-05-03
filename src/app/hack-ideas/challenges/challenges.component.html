@@ -1,0 +1,94 @@
+<div class="challenges">
+  <div class="container-fluid h-100">
+    <div class="d-flex align-items-center pt-3">
+      <div class="search col-6 position-relative">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="search">
+        <img src="../../../assets/icons/search.svg" alt="Search" class="position-absolute">
+      </div>
+      <button type="btn" class="btn ml-3" data-toggle="modal" data-target="#challenges"
+        (click)="challengesModal = true;challengesForm.reset();submitChallengesForm = false"><img
+          src="../../../assets/icons/add.svg" alt="New Challenges"> New Challenges</button>
+    </div>
+    <div class="card">
+      <div class="card-body h-100">
+        <table class="table">
+          <thead>
+            <tr>
+              <th *ngFor="let challengesHeaderData of challengesHeader" [appSort]="challenges" data-order="asc"
+                [attr.data-name]="challengesHeaderData.label"
+                (click)="challengesHeaderData.sort = !challengesHeaderData.sort">
+                {{challengesHeaderData.heading}}<img src="assets/icons/VectorSortDown.svg" alt="sort"
+                  [ngClass]="challengesHeaderData.sort ? 'rotate-180': ''"
+                  *ngIf="(challenges | searchFilter: search).length != 0 && challenges.length != 0"> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let challengesData of challenges | searchFilter: search; let i = index">
+              <td>{{challengesData.title}}</td>
+              <td>{{challengesData.tags}}</td>
+              <td>{{challengesData.description}}</td>
+              <td class="show-td">{{challengesData.created | date: 'dd-MMM-yyyy'}}</td>
+              <td class="hide-td">
+                <div class="d-flex align-items-center"> <img src="../../../../assets/icons/delete.svg" alt="Delete"
+                    (click)="deleteChallenges(i)" title="Delete Challenges"> <img src="../../../../assets/icons/close.svg" alt="Edit"
+                    (click)="setChallenges(challengesData, i)" data-toggle="modal" data-target="#challenges" title="Edit Challenges"> </div>
+              </td>
+            </tr>
+            <tr *ngIf="(challenges | searchFilter: search).length == 0 || challenges.length == 0">
+              <td colspan="6" class="text-center">No Data</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Add Update Challenges Modal -->
+<div class="modal fade" id="challenges" tabindex="-1" role="dialog" aria-labelledby="challengesTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><span *ngIf="challengesModal">Add</span><span
+            *ngIf="!challengesModal">Manage</span> Challenges</h5>
+        <img src="../../../assets/icons/close.svg" alt="New Challenges" id="close" data-dismiss="modal" aria-label="Close">
+      </div>
+      <div class=" modal-body px-5">
+        <form [formGroup]="challengesForm" (ngSubmit)="addUpdateChallenges(challengesForm.value)">
+          <div class="form-group mb-3">
+            <label for="title" class="mb-2">Title</label>
+            <input type="text" id="title" class="form-control" placeholder="Title" formControlName="title"
+              autocomplete="off">
+            <div *ngIf="submitChallengesForm && challengesValidator.title.errors" class="error-msg">
+              <div *ngIf="challengesValidator.title.errors.required">Title is required</div>
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="tags" class="mb-2">Tags</label>
+            <select name="tags" id="tags" class="form-control" formControlName="tags">
+              <option value="">Select</option>
+              <option value="feature">Feature</option>
+              <option value="tech">Tech</option>
+            </select>
+            <div *ngIf="submitChallengesForm && challengesValidator.tags.errors" class="error-msg">
+              <div *ngIf="challengesValidator.tags.errors.required">Tags is required</div>
+            </div>
+          </div>
+          <div class="form-group mb-4">
+            <label for="description" class="mb-2">description</label>
+            <input type="text" id="description" class="form-control" placeholder="Description"
+              formControlName="description" autocomplete="off">
+            <div *ngIf="submitChallengesForm && challengesValidator.description.errors" class="error-msg">
+              <div *ngIf="challengesValidator.description.errors.required">Description is required</div>
+            </div>
+          </div>
+          <button type="submit" class="btn" *ngIf="challengesModal">Add</button>
+          <button type="submit" class="btn" *ngIf="!challengesModal">Update</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Add Update Challenges Modal End -->

@@ -1,0 +1,16 @@
+<div class="login d-flex justify-content-center align-items-center">
+  <div class="card col-4">
+    <h4 class="mb-4">Welcome To Hack Ideas</h4>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value.employeeId)">
+      <div class="form-group mb-5">
+        <label for="employee-id" class="mb-2">Employee Id</label>
+        <input type="text" id="employee-id" class="form-control" placeholder="Employee Id" formControlName="employeeId" autocomplete="off">
+        <div *ngIf="submitLoginForm && loginValidator.employeeId.errors" class="error-msg">
+          <div *ngIf="loginValidator.employeeId.errors.required">Employee Id is required</div>
+        </div>
+        <div *ngIf="submitLoginForm && loginForm.value.employeeId != '' && !patternValidation" class="error-msg">Invalid Employee Id</div>
+      </div>
+      <button type="sumbit" class="btn">Login</button>
+    </form>
+  </div>
+</div>
